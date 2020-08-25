@@ -41,7 +41,6 @@
 
     <div class="content">
       <p class="title"></p>
-      <!-- <img src="https://openweathermap.org/img/wn/02d@2x.png" /> -->
       <p class="icon"></p>
       <p class="weat"></p>
       <p class="degrees"></p>
@@ -235,7 +234,6 @@ img {
 }
 input {
   background: rgb(255, 255, 255);
-  /* margin-left: 25px; */
   margin-top: 10px;
 }
 .item {
