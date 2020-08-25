@@ -19,9 +19,7 @@
 
     <v-app-bar app clipped-left color="rgb(97, 97, 255)">
       <v-app-bar-nav-icon color="#FFF" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <span @click="darkMode" id="dark" class="dark btn">
-        <span class="material-icons">brightness_2</span>
-      </span>
+      <DarkMode></DarkMode>
     </v-app-bar>
     <br />
     <br />
@@ -44,7 +42,6 @@ export default {
   name: "App",
   data() {
     return {
-      isDarkMode: false,
       drawer: false,
       getWeather: "",
 
@@ -55,20 +52,6 @@ export default {
     };
   },
   methods: {
-    darkMode() {
-      if (this.isDarkMode === false) {
-        this.isDarkMode = true;
-        document.getElementById("dark").innerHTML =
-          '<span class="sun material-icons">brightness_7</span>';
-        document.getElementById("app").style.backgroundColor = "#222222";
-      } else {
-        this.isDarkMode = false;
-        document.getElementById("app").style.backgroundColor =
-          "rgb(97, 97, 255)";
-        document.getElementById("dark").innerHTML =
-          '<span class="material-icons">brightness_2</span>';
-      }
-    },
     weather() {
       if (this.getWeather != "") {
         this.nameCity = this.getWeather;
