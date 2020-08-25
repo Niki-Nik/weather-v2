@@ -3,28 +3,18 @@
     <v-navigation-drawer v-model="drawer" dark color="rgb(59, 57, 57)" app clipped>
       <div class="location">
         <v-list>
-          <v-list-item class="item" link v-for="(item, index) in location" :key="index">
-            <v-list-item-content @click="weather()">
-              {{
-              item
-              }}
-            </v-list-item-content>
-            <button class="btnn" @click="deleteLocation(index)">
-              <span class="material-icons">clear</span>
-            </button>
+          <v-list-item>
+            <input
+              type="text"
+              v-on:keyup.enter="weather"
+              v-model="getWeather"
+              placeholder="Enter city..."
+              class="form-control"
+            />
           </v-list-item>
         </v-list>
       </div>
-      <v-btn block color="blue-grey" class="btnn" @click="LocationAdd">Add Location</v-btn>
-      <input
-        type="text"
-        v-on:keyup.enter="LocationAdd"
-        @click="LocationAdd"
-        id="addLocation"
-        class="form-control"
-        placeholder="Add new location"
-        v-if="isAddLocation"
-      />
+      <v-btn block color="blue-grey" class="btnn" @click="weather">get the weather</v-btn>
     </v-navigation-drawer>
 
     <v-app-bar app clipped-left color="rgb(97, 97, 255)">
@@ -33,12 +23,9 @@
         <span class="material-icons">brightness_2</span>
       </span>
     </v-app-bar>
-    <v-card max-width="250" class="mx-auto">
-      <v-list-item></v-list-item>
-    </v-card>
-
     <br />
-
+    <br />
+    <br />
     <div class="content">
       <p class="title"></p>
       <p class="icon"></p>
@@ -53,75 +40,17 @@
 </template>
 
 <script>
-fetch(
-  "http://api.openweathermap.org/data/2.5/weather?q=Bishkek&appid=2f214a568d767d2c4201c9df83ad2f7d"
-)
-  .then(function(resp) {
-    return resp.json();
-  })
-  .then(function(data) {
-    // console.log(data);
-    document.querySelector(".degrees").innerHTML =
-      Math.round(data.main.temp - 273) + " &deg;" + "C";
-    document.querySelector(".weat").textContent =
-      data.weather[0]["description"];
-
-    document.querySelector(".humidity").innerHTML =
-      '<i class="material-icons ii">opacity</i>' + data.main["humidity"];
-
-    document.querySelector(".pressure").innerHTML =
-      '<i class="material-icons">waves</i>' + data.main["pressure"];
-
-    document.querySelector(".feels_like").innerHTML =
-      '<i class="fa fa-thermometer-half" aria-hidden="true"></i>' +
-      Math.round(data.main["feels_like"] - 273);
-
-    document.querySelector(".title").textContent = data.name;
-    if (data.weather[0]["icon"] === "03d") {
-      document.querySelector(".icon").innerHTML =
-        ' <img src="https://openweathermap.org/img/wn/03d@2x.png"/>';
-    }
-    if (data.weather[0]["icon"] === "03n") {
-      document.querySelector(".icon").innerHTML =
-        ' <img src="https://openweathermap.org/img/wn/03n@2x.png"/>';
-    }
-    if (data.weather[0]["icon"] === "01d") {
-      document.querySelector(".icon").innerHTML =
-        ' <img src="https://openweathermap.org/img/wn/01d@2x.png"/>';
-    }
-    if (data.weather[0]["icon"] === "01n") {
-      document.querySelector(".icon").innerHTML =
-        ' <img src="https://openweathermap.org/img/wn/01n@2x.png"/>';
-    }
-    if (data.weather[0]["icon"] === "02d") {
-      document.querySelector(".icon").innerHTML =
-        ' <img src="https://openweathermap.org/img/wn/02d@2x.png"/>';
-    }
-    if (data.weather[0]["icon"] === "04d") {
-      document.querySelector(".icon").innerHTML =
-        ' <img src="https://openweathermap.org/img/wn/04d@2x.png"/>';
-    }
-    if (data.weather[0]["icon"] === "04n") {
-      document.querySelector(".icon").innerHTML =
-        ' <img src="https://openweathermap.org/img/wn/04n@2x.png"/>';
-    }
-    if (data.weather[0]["icon"] === "02n") {
-      document.querySelector(".icon").innerHTML =
-        ' <img src="https://openweathermap.org/img/wn/02n@2x.png"/>';
-    }
-  });
 export default {
   name: "App",
   data() {
     return {
       isDarkMode: false,
-      isAddLocation: false,
       drawer: false,
-      location: ["Бишкек", "London"],
+      getWeather: "",
 
       url: "http://api.openweathermap.org/data/2.5/weather?",
       q: "q=",
-      nameCity: "London",
+      nameCity: "",
       appid: "&appid=2f214a568d767d2c4201c9df83ad2f7d"
     };
   },
@@ -130,7 +59,7 @@ export default {
       if (this.isDarkMode === false) {
         this.isDarkMode = true;
         document.getElementById("dark").innerHTML =
-          '<span class="sun material-icons">brightness_5</span>';
+          '<span class="sun material-icons">brightness_7</span>';
         document.getElementById("app").style.backgroundColor = "#222222";
       } else {
         this.isDarkMode = false;
@@ -140,75 +69,127 @@ export default {
           '<span class="material-icons">brightness_2</span>';
       }
     },
-    LocationAdd() {
-      this.isAddLocation = true;
-      let input = document.getElementById("addLocation");
-      if (input.value !== "") {
-        this.location.push(input.value);
-        input.value = "";
-        this.isAddLocation = false;
-      }
-    },
     weather() {
-      fetch(this.url + this.q + this.nameCity + this.appid)
-        .then(function(resp) {
-          return resp.json();
-        })
-        .then(function(data) {
-          console.log(data);
-          document.querySelector(".degrees").innerHTML =
-            Math.round(data.main.temp - 273) + " &deg;" + "C";
-          document.querySelector(".weat").textContent =
-            data.weather[0]["description"];
+      if (this.getWeather != "") {
+        this.nameCity = this.getWeather;
+        this.getWeather = "";
+        fetch(this.url + this.q + this.nameCity + this.appid)
+          .then(function(resp) {
+            return resp.json();
+          })
+          .then(function(data) {
+            // console.log(data);
+            document.querySelector(".degrees").innerHTML =
+              Math.round(data.main.temp - 273) + " &deg;" + "C";
+            document.querySelector(".weat").textContent =
+              data.weather[0]["description"];
 
-          document.querySelector(".humidity").innerHTML =
-            '<i class="material-icons ii">opacity</i>' + data.main["humidity"];
+            document.querySelector(".humidity").innerHTML =
+              '<i class="material-icons ii">opacity</i>' +
+              data.main["humidity"];
 
-          document.querySelector(".pressure").innerHTML =
-            '<i class="material-icons">waves</i>' + data.main["pressure"];
+            document.querySelector(".pressure").innerHTML =
+              '<i class="material-icons">waves</i>' + data.main["pressure"];
 
-          document.querySelector(".feels_like").innerHTML =
-            '<i class="fa fa-thermometer-half" aria-hidden="true"></i>' +
-            Math.round(data.main["feels_like"] - 273);
+            document.querySelector(".feels_like").innerHTML =
+              '<i class="fa fa-thermometer-half" aria-hidden="true"></i>' +
+              Math.round(data.main["feels_like"] - 273);
 
-          document.querySelector(".title").textContent = data.name;
-          if (data.weather[0]["icon"] === "03d") {
-            document.querySelector(".icon").innerHTML =
-              ' <img src="https://openweathermap.org/img/wn/03d@2x.png"/>';
-          }
-          if (data.weather[0]["icon"] === "03n") {
-            document.querySelector(".icon").innerHTML =
-              ' <img src="https://openweathermap.org/img/wn/03n@2x.png"/>';
-          }
-          if (data.weather[0]["icon"] === "01d") {
-            document.querySelector(".icon").innerHTML =
-              ' <img src="https://openweathermap.org/img/wn/01d@2x.png"/>';
-          }
-          if (data.weather[0]["icon"] === "01n") {
-            document.querySelector(".icon").innerHTML =
-              ' <img src="https://openweathermap.org/img/wn/01n@2x.png"/>';
-          }
-          if (data.weather[0]["icon"] === "02d") {
-            document.querySelector(".icon").innerHTML =
-              ' <img src="https://openweathermap.org/img/wn/02d@2x.png"/>';
-          }
-          if (data.weather[0]["icon"] === "04d") {
-            document.querySelector(".icon").innerHTML =
-              ' <img src="https://openweathermap.org/img/wn/04d@2x.png"/>';
-          }
-          if (data.weather[0]["icon"] === "04n") {
-            document.querySelector(".icon").innerHTML =
-              ' <img src="https://openweathermap.org/img/wn/04n@2x.png"/>';
-          }
-          if (data.weather[0]["icon"] === "02n") {
-            document.querySelector(".icon").innerHTML =
-              ' <img src="https://openweathermap.org/img/wn/02n@2x.png"/>';
-          }
-        });
-    },
-    deleteLocation(index) {
-      this.location.splice(index, 1);
+            document.querySelector(".title").textContent = data.name;
+            if (data.weather[0]["icon"] === "03d") {
+              document.querySelector(".icon").innerHTML =
+                ' <img src="https://openweathermap.org/img/wn/03d@2x.png"/>';
+            }
+            if (data.weather[0]["icon"] === "03n") {
+              document.querySelector(".icon").innerHTML =
+                ' <img src="https://openweathermap.org/img/wn/03n@2x.png"/>';
+            }
+            if (data.weather[0]["icon"] === "01d") {
+              document.querySelector(".icon").innerHTML =
+                ' <img src="https://openweathermap.org/img/wn/01d@2x.png"/>';
+            }
+            if (data.weather[0]["icon"] === "01n") {
+              document.querySelector(".icon").innerHTML =
+                ' <img src="https://openweathermap.org/img/wn/01n@2x.png"/>';
+            }
+            if (data.weather[0]["icon"] === "02d") {
+              document.querySelector(".icon").innerHTML =
+                ' <img src="https://openweathermap.org/img/wn/02d@2x.png"/>';
+            }
+            if (data.weather[0]["icon"] === "04d") {
+              document.querySelector(".icon").innerHTML =
+                ' <img src="https://openweathermap.org/img/wn/04d@2x.png"/>';
+            }
+            if (data.weather[0]["icon"] === "04n") {
+              document.querySelector(".icon").innerHTML =
+                ' <img src="https://openweathermap.org/img/wn/04n@2x.png"/>';
+            }
+            if (data.weather[0]["icon"] === "02n") {
+              document.querySelector(".icon").innerHTML =
+                ' <img src="https://openweathermap.org/img/wn/02n@2x.png"/>';
+            }
+          });
+      }
     }
+  },
+  mounted() {
+    fetch(
+      "http://api.openweathermap.org/data/2.5/weather?q=Bishkek&appid=2f214a568d767d2c4201c9df83ad2f7d"
+    )
+      .then(function(resp) {
+        return resp.json();
+      })
+      .then(function(data) {
+        // console.log(data);
+        document.querySelector(".degrees").innerHTML =
+          Math.round(data.main.temp - 273) + " &deg;" + "C";
+        document.querySelector(".weat").textContent =
+          data.weather[0]["description"];
+
+        document.querySelector(".humidity").innerHTML =
+          '<i class="material-icons ii">opacity</i>' + data.main["humidity"];
+
+        document.querySelector(".pressure").innerHTML =
+          '<i class="material-icons">waves</i>' + data.main["pressure"];
+
+        document.querySelector(".feels_like").innerHTML =
+          '<i class="fa fa-thermometer-half" aria-hidden="true"></i>' +
+          Math.round(data.main["feels_like"] - 273);
+
+        document.querySelector(".title").textContent = data.name;
+        if (data.weather[0]["icon"] === "03d") {
+          document.querySelector(".icon").innerHTML =
+            ' <img src="https://openweathermap.org/img/wn/03d@2x.png"/>';
+        }
+        if (data.weather[0]["icon"] === "03n") {
+          document.querySelector(".icon").innerHTML =
+            ' <img src="https://openweathermap.org/img/wn/03n@2x.png"/>';
+        }
+        if (data.weather[0]["icon"] === "01d") {
+          document.querySelector(".icon").innerHTML =
+            ' <img src="https://openweathermap.org/img/wn/01d@2x.png"/>';
+        }
+        if (data.weather[0]["icon"] === "01n") {
+          document.querySelector(".icon").innerHTML =
+            ' <img src="https://openweathermap.org/img/wn/01n@2x.png"/>';
+        }
+        if (data.weather[0]["icon"] === "02d") {
+          document.querySelector(".icon").innerHTML =
+            ' <img src="https://openweathermap.org/img/wn/02d@2x.png"/>';
+        }
+        if (data.weather[0]["icon"] === "04d") {
+          document.querySelector(".icon").innerHTML =
+            ' <img src="https://openweathermap.org/img/wn/04d@2x.png"/>';
+        }
+        if (data.weather[0]["icon"] === "04n") {
+          document.querySelector(".icon").innerHTML =
+            ' <img src="https://openweathermap.org/img/wn/04n@2x.png"/>';
+        }
+        if (data.weather[0]["icon"] === "02n") {
+          document.querySelector(".icon").innerHTML =
+            ' <img src="https://openweathermap.org/img/wn/02n@2x.png"/>';
+        }
+      });
   }
 };
 </script>
