@@ -2,17 +2,32 @@
   <div>
     <div class="location">
       <v-list>
-        <v-btn block color="blue-grey" class="btnn" @click="weather">узнать погоду</v-btn>
-        <v-list-item>
-          <input
-            v-if="inputWeather"
-            type="text"
-            v-on:keyup.enter="weather"
-            v-model="getWeather"
-            placeholder="Введите название города..."
-            class="form-control"
-          />
-        </v-list-item>
+        <v-dialog v-model="dialog" width="500">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn block color="blue-grey" dark v-bind="attrs" v-on="on">узнать погоду</v-btn>
+          </template>
+
+          <v-card>
+            <v-card-title class="headline grey lighten-2">Введите город</v-card-title>
+
+            <v-text-field
+              placeholder="Введите название города..."
+              v-on:keyup.enter="weather"
+              v-model="getWeather"
+              class="input"
+            ></v-text-field>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                v-on:click="weather"
+                color="rgb(59, 57, 57)"
+                text
+                @click="dialog = false"
+              >узнать погоду</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-list>
     </div>
   </div>
@@ -23,7 +38,7 @@ export default {
   data() {
     return {
       getWeather: "",
-      inputWeather: false,
+      dialog: false,
 
       url: "http://api.openweathermap.org/data/2.5/weather?",
       q: "q=",
@@ -40,7 +55,7 @@ export default {
       if (this.getWeather != "") {
         this.nameCity = this.getWeather;
         this.getWeather = "";
-        this.inputWeather = false;
+        this.dialog = false;
         fetch(this.url + this.q + this.nameCity + this.appid)
           .then(function(resp) {
             return resp.json();
@@ -260,9 +275,5 @@ export default {
 <style>
 .btnn {
   margin-top: 5px;
-}
-input {
-  background: rgb(255, 255, 255);
-  margin-top: 10px;
 }
 </style>
