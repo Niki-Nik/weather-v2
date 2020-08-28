@@ -19,7 +19,9 @@
       <label class="humidity"></label>
       <label class="feels_like"></label>
       <label class="pressure"></label>
+      <p id="next_days"></p>
       <hr />
+      <NextFourDays></NextFourDays>
     </div>
     <BishkekWeather></BishkekWeather>
   </v-app>
@@ -51,9 +53,6 @@ export default {
 }
 .btnn {
   margin-top: 5px;
-}
-img {
-  width: 30px;
 }
 input {
   background: rgb(255, 255, 255);
