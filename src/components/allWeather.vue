@@ -28,8 +28,7 @@ export default {
       nameCity: "",
       appid: "&appid=2f214a568d767d2c4201c9df83ad2f7d",
 
-      url2: "http://api.openweathermap.org/data/2.5/forecast?",
-      q2: "q="
+      url2: "http://api.openweathermap.org/data/2.5/forecast?"
     };
   },
   methods: {
@@ -94,7 +93,7 @@ export default {
             }
           });
 
-        fetch(this.url2 + this.q2 + this.nameCity + this.appid)
+        fetch(this.url2 + this.q + this.nameCity + this.appid)
           .then(function(res) {
             return res.json();
           })
