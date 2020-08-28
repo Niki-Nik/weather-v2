@@ -2,8 +2,10 @@
   <div>
     <div class="location">
       <v-list>
+        <v-btn block color="blue-grey" class="btnn" @click="weather">узнать погоду</v-btn>
         <v-list-item>
           <input
+            v-if="inputWeather"
             type="text"
             v-on:keyup.enter="weather"
             v-model="getWeather"
@@ -13,7 +15,6 @@
         </v-list-item>
       </v-list>
     </div>
-    <v-btn block color="blue-grey" class="btnn" @click="weather">узнать погоду</v-btn>
   </div>
 </template>
 
@@ -22,20 +23,24 @@ export default {
   data() {
     return {
       getWeather: "",
+      inputWeather: false,
 
       url: "http://api.openweathermap.org/data/2.5/weather?",
       q: "q=",
       nameCity: "",
       appid: "&appid=2f214a568d767d2c4201c9df83ad2f7d",
 
-      url2: "http://api.openweathermap.org/data/2.5/forecast?"
+      url2: "http://api.openweathermap.org/data/2.5/forecast?",
+      q2: "q="
     };
   },
   methods: {
     weather() {
+      this.inputWeather = true;
       if (this.getWeather != "") {
         this.nameCity = this.getWeather;
         this.getWeather = "";
+        this.inputWeather = false;
         fetch(this.url + this.q + this.nameCity + this.appid)
           .then(function(resp) {
             return resp.json();
@@ -93,7 +98,7 @@ export default {
             }
           });
 
-        fetch(this.url2 + this.q + this.nameCity + this.appid)
+        fetch(this.url2 + this.q2 + this.nameCity + this.appid)
           .then(function(res) {
             return res.json();
           })
@@ -253,4 +258,11 @@ export default {
 </script>
 
 <style>
+.btnn {
+  margin-top: 5px;
+}
+input {
+  background: rgb(255, 255, 255);
+  margin-top: 10px;
+}
 </style>
