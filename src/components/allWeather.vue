@@ -2,7 +2,7 @@
   <div>
     <div class="location">
       <v-list>
-        <v-dialog v-model="dialog" width="500">
+        <v-dialog v-model="dialog" width="400">
           <template v-slot:activator="{ on, attrs }">
             <v-btn block color="rgb(97, 97, 255)" dark v-bind="attrs" v-on="on">узнать погоду</v-btn>
           </template>
