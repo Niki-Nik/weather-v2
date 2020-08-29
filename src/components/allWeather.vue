@@ -4,11 +4,11 @@
       <v-list>
         <v-dialog v-model="dialog" width="500">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn block color="blue-grey" dark v-bind="attrs" v-on="on">узнать погоду</v-btn>
+            <v-btn block color="rgb(97, 97, 255)" dark v-bind="attrs" v-on="on">узнать погоду</v-btn>
           </template>
 
           <v-card>
-            <v-card-title class="headline grey lighten-2">Введите город</v-card-title>
+            <v-card-title class="win">Введите город</v-card-title>
 
             <v-text-field
               placeholder="Введите название города..."
@@ -21,7 +21,7 @@
               <v-spacer></v-spacer>
               <v-btn
                 v-on:click="weather"
-                color="rgb(59, 57, 57)"
+                color="rgb(97, 97, 255)"
                 text
                 @click="dialog = false"
               >узнать погоду</v-btn>
@@ -119,149 +119,149 @@ export default {
           })
           .then(function(data) {
             document.querySelector(".one").innerHTML =
-              Math.round(data.list[4]["main"]["temp"] - 273) + "&deg;" + "C";
+              Math.round(data.list[1]["main"]["temp"] - 273) + "&deg;" + "C";
             document.querySelector(".two").innerHTML =
-              Math.round(data.list[12]["main"]["temp"] - 273) + "&deg;" + "C";
+              Math.round(data.list[9]["main"]["temp"] - 273) + "&deg;" + "C";
             document.querySelector(".three").innerHTML =
-              Math.round(data.list[20]["main"]["temp"] - 273) + "&deg;" + "C";
+              Math.round(data.list[17]["main"]["temp"] - 273) + "&deg;" + "C";
             document.querySelector(".four").innerHTML =
-              Math.round(data.list[28]["main"]["temp"] - 273) + "&deg;" + "C";
+              Math.round(data.list[25]["main"]["temp"] - 273) + "&deg;" + "C";
 
             //
-            if (data.list[4].weather[0]["icon"] === "03d") {
+            if (data.list[1].weather[0]["icon"] === "03d") {
               document.querySelector(".one_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/03d@2x.png"/>';
             }
-            if (data.list[4].weather[0]["icon"] === "03n") {
+            if (data.list[1].weather[0]["icon"] === "03n") {
               document.querySelector(".one_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/03n@2x.png"/>';
             }
-            if (data.list[4].weather[0]["icon"] === "01d") {
+            if (data.list[1].weather[0]["icon"] === "01d") {
               document.querySelector(".one_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/01d@2x.png"/>';
             }
-            if (data.list[4].weather[0]["icon"] === "01n") {
+            if (data.list[1].weather[0]["icon"] === "01n") {
               document.querySelector(".one_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/01n@2x.png"/>';
             }
-            if (data.list[4].weather[0]["icon"] === "02d") {
+            if (data.list[1].weather[0]["icon"] === "02d") {
               document.querySelector(".one_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/02d@2x.png"/>';
             }
-            if (data.list[4].weather[0]["icon"] === "04d") {
+            if (data.list[1].weather[0]["icon"] === "04d") {
               document.querySelector(".one_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/04d@2x.png"/>';
             }
-            if (data.list[4].weather[0]["icon"] === "04n") {
+            if (data.list[1].weather[0]["icon"] === "04n") {
               document.querySelector(".one_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/04n@2x.png"/>';
             }
-            if (data.list[4]["weather"][0]["icon"] === "02n") {
+            if (data.list[1]["weather"][0]["icon"] === "02n") {
               document.querySelector(".one_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/02n@2x.png"/>';
             }
             //
 
-            if (data.list[12]["weather"][0]["icon"] === "03d") {
+            if (data.list[9]["weather"][0]["icon"] === "03d") {
               document.querySelector(".two_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/03d@2x.png"/>';
             }
-            if (data.list[12].weather[0]["icon"] === "03n") {
+            if (data.list[9].weather[0]["icon"] === "03n") {
               document.querySelector(".two_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/03n@2x.png"/>';
             }
-            if (data.list[12].weather[0]["icon"] === "01d") {
+            if (data.list[9].weather[0]["icon"] === "01d") {
               document.querySelector(".two_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/01d@2x.png"/>';
             }
-            if (data.list[12].weather[0]["icon"] === "01n") {
+            if (data.list[9].weather[0]["icon"] === "01n") {
               document.querySelector(".two_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/01n@2x.png"/>';
             }
-            if (data.list[12].weather[0]["icon"] === "02d") {
+            if (data.list[9].weather[0]["icon"] === "02d") {
               document.querySelector(".two_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/02d@2x.png"/>';
             }
-            if (data.list[12].weather[0]["icon"] === "04d") {
+            if (data.list[9].weather[0]["icon"] === "04d") {
               document.querySelector(".two_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/04d@2x.png"/>';
             }
-            if (data.list[12].weather[0]["icon"] === "04n") {
+            if (data.list[9].weather[0]["icon"] === "04n") {
               document.querySelector(".two_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/04n@2x.png"/>';
             }
-            if (data.list[12].weather[0]["icon"] === "02n") {
+            if (data.list[9].weather[0]["icon"] === "02n") {
               document.querySelector(".two_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/02n@2x.png"/>';
             }
 
             //
-            if (data.list[20]["weather"][0]["icon"] === "03d") {
+            if (data.list[17]["weather"][0]["icon"] === "03d") {
               document.querySelector(".three_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/03d@2x.png"/>';
             }
-            if (data.list[20].weather[0]["icon"] === "03n") {
+            if (data.list[17].weather[0]["icon"] === "03n") {
               document.querySelector(".three_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/03n@2x.png"/>';
             }
-            if (data.list[20].weather[0]["icon"] === "01d") {
+            if (data.list[17].weather[0]["icon"] === "01d") {
               document.querySelector(".three_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/01d@2x.png"/>';
             }
-            if (data.list[20].weather[0]["icon"] === "01n") {
+            if (data.list[17].weather[0]["icon"] === "01n") {
               document.querySelector(".three_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/01n@2x.png"/>';
             }
-            if (data.list[20].weather[0]["icon"] === "02d") {
+            if (data.list[17].weather[0]["icon"] === "02d") {
               document.querySelector(".three_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/02d@2x.png"/>';
             }
-            if (data.list[20].weather[0]["icon"] === "04d") {
+            if (data.list[17].weather[0]["icon"] === "04d") {
               document.querySelector(".three_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/04d@2x.png"/>';
             }
-            if (data.list[20].weather[0]["icon"] === "04n") {
+            if (data.list[17].weather[0]["icon"] === "04n") {
               document.querySelector(".three_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/04n@2x.png"/>';
             }
-            if (data.list[20].weather[0]["icon"] === "02n") {
+            if (data.list[17].weather[0]["icon"] === "02n") {
               document.querySelector(".three_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/02n@2x.png"/>';
             }
             //
-            if (data.list[28]["weather"][0]["icon"] === "03d") {
+            if (data.list[25]["weather"][0]["icon"] === "03d") {
               document.querySelector(".four_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/03d@2x.png"/>';
             }
-            if (data.list[28].weather[0]["icon"] === "03n") {
+            if (data.list[25].weather[0]["icon"] === "03n") {
               document.querySelector(".four_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/03n@2x.png"/>';
             }
-            if (data.list[28].weather[0]["icon"] === "01d") {
+            if (data.list[25].weather[0]["icon"] === "01d") {
               document.querySelector(".four_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/01d@2x.png"/>';
             }
-            if (data.list[28].weather[0]["icon"] === "01n") {
+            if (data.list[25].weather[0]["icon"] === "01n") {
               document.querySelector(".four_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/01n@2x.png"/>';
             }
-            if (data.list[28].weather[0]["icon"] === "02d") {
+            if (data.list[25].weather[0]["icon"] === "02d") {
               document.querySelector(".four_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/02d@2x.png"/>';
             }
-            if (data.list[28].weather[0]["icon"] === "04d") {
+            if (data.list[25].weather[0]["icon"] === "04d") {
               document.querySelector(".four_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/04d@2x.png"/>';
             }
-            if (data.list[28].weather[0]["icon"] === "04n") {
+            if (data.list[25].weather[0]["icon"] === "04n") {
               document.querySelector(".four_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/04n@2x.png"/>';
             }
-            if (data.list[28].weather[0]["icon"] === "02n") {
+            if (data.list[25].weather[0]["icon"] === "02n") {
               document.querySelector(".four_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/02n@2x.png"/>';
             }
-            if (data.list[28].weather[0]["icon"] === "10d") {
+            if (data.list[25].weather[0]["icon"] === "10d") {
               document.querySelector(".four_icon").innerHTML =
                 ' <img src="https://openweathermap.org/img/wn/02n@2x.png"/>';
             }
@@ -275,5 +275,9 @@ export default {
 <style>
 .btnn {
   margin-top: 5px;
+}
+.win {
+  background: rgb(97, 97, 255);
+  color: aliceblue;
 }
 </style>

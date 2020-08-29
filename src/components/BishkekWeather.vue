@@ -12,7 +12,6 @@ export default {
         return resp.json();
       })
       .then(function(data) {
-        // console.log(data);
         document.querySelector(".degrees").innerHTML =
           Math.round(data.main.temp - 273) + " &deg;" + "C";
         document.querySelector(".weat").textContent =
@@ -20,6 +19,8 @@ export default {
 
         document.querySelector(".humidity").innerHTML =
           '<i class="material-icons ii">opacity</i>' + data.main["humidity"];
+
+        document.getElementById("next_days").textContent = "Следующие 4 дня";
 
         document.querySelector(".pressure").innerHTML =
           '<i class="material-icons">waves</i>' + data.main["pressure"];

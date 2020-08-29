@@ -1,11 +1,20 @@
 <template>
   <v-app id="app">
-    <v-navigation-drawer v-model="drawer" dark color="rgb(59, 57, 57)" app clipped>
+    <v-navigation-drawer
+      v-model="drawer"
+      dark
+      color="rgb(59, 57, 57)"
+      app
+      clipped
+    >
       <allWeather></allWeather>
     </v-navigation-drawer>
 
     <v-app-bar app clipped-left color="rgb(97, 97, 255)">
-      <v-app-bar-nav-icon color="#FFF" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        color="#FFF"
+        @click.stop="drawer = !drawer"
+      ></v-app-bar-nav-icon>
       <DarkMode></DarkMode>
     </v-app-bar>
     <br />
@@ -32,9 +41,9 @@ export default {
   name: "App",
   data() {
     return {
-      drawer: false
+      drawer: false,
     };
-  }
+  },
 };
 </script>
 
