@@ -30,6 +30,7 @@ export default {
         return res.json();
       })
       .then(function(data) {
+        console.log(data);
         document.querySelector(".one").innerHTML =
           Math.round(data.list[1]["main"]["temp"] - 273) + "&deg;" + "C";
         document.querySelector(".two").innerHTML =
@@ -111,7 +112,7 @@ export default {
             ' <img src="https://openweathermap.org/img/wn/02n@2x.png"/>';
         }
         if (data.list[9].weather[0]["icon"] === "10n") {
-          document.querySelector(".one_icon").innerHTML =
+          document.querySelector(".two_icon").innerHTML =
             ' <img src="https://openweathermap.org/img/wn/10n@2x.png"/>';
         }
 
@@ -153,7 +154,7 @@ export default {
             ' <img src="https://openweathermap.org/img/wn/02n@2x.png"/>';
         }
         if (data.list[17].weather[0]["icon"] === "10n") {
-          document.querySelector(".one_icon").innerHTML =
+          document.querySelector(".three_icon").innerHTML =
             ' <img src="https://openweathermap.org/img/wn/10n@2x.png"/>';
         }
         //
@@ -194,7 +195,7 @@ export default {
             ' <img src="https://openweathermap.org/img/wn/02n@2x.png"/>';
         }
         if (data.list[25].weather[0]["icon"] === "10n") {
-          document.querySelector(".one_icon").innerHTML =
+          document.querySelector(".four_icon").innerHTML =
             ' <img src="https://openweathermap.org/img/wn/10n@2x.png"/>';
         }
       });
