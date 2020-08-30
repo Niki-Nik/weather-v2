@@ -298,7 +298,4 @@ export default {
   background: rgb(97, 97, 255);
   color: aliceblue;
 }
-.get_weather {
-  background: blue;
-}
 </style>
