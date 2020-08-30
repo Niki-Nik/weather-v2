@@ -30,7 +30,6 @@ export default {
         return res.json();
       })
       .then(function(data) {
-        console.log(data);
         document.querySelector(".one").innerHTML =
           Math.round(data.list[1]["main"]["temp"] - 273) + "&deg;" + "C";
         document.querySelector(".two").innerHTML =
