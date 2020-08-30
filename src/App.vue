@@ -41,7 +41,7 @@ export default {
 <style>
 .searchh {
   color: #ffffff;
-  font-size: 28px;
+  font-size: 26 px;
   margin-top: 4px;
 }
 .searchh:hover {
