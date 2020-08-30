@@ -1,34 +1,32 @@
 <template>
   <div>
     <div class="location">
-      <v-list>
-        <v-dialog v-model="dialog" width="400">
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn block color="rgb(97, 97, 255)" dark v-bind="attrs" v-on="on">узнать погоду</v-btn>
-          </template>
+      <v-dialog v-model="dialog" width="400">
+        <template v-slot:activator="{ on, attrs }">
+          <span v-bind="attrs" v-on="on" class="material-icons searchh btn">search</span>
+        </template>
 
-          <v-card>
-            <v-card-title class="win">Введите город</v-card-title>
+        <v-card>
+          <v-card-title class="win">Введите город</v-card-title>
 
-            <v-text-field
-              placeholder="Введите название города..."
-              v-on:keyup.enter="weather"
-              v-model="getWeather"
-              class="input"
-            ></v-text-field>
+          <v-text-field
+            placeholder="Введите название города..."
+            v-on:keyup.enter="weather"
+            v-model="getWeather"
+            class="input"
+          ></v-text-field>
 
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn
-                v-on:click="weather"
-                color="rgb(97, 97, 255)"
-                text
-                @click="dialog = false"
-              >узнать погоду</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-list>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              v-on:click="weather"
+              color="rgb(97, 97, 255)"
+              text
+              @click="dialog = false"
+            >узнать погоду</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </div>
   </div>
 </template>
@@ -299,5 +297,8 @@ export default {
 .win {
   background: rgb(97, 97, 255);
   color: aliceblue;
+}
+.get_weather {
+  background: blue;
 }
 </style>

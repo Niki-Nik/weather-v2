@@ -1,22 +1,13 @@
 <template>
   <v-app id="app">
-    <v-navigation-drawer
-      v-model="drawer"
-      dark
-      color="rgb(59, 57, 57)"
-      app
-      clipped
-    >
+    <v-navigation-drawer v-model="drawer" dark color="rgb(59, 57, 57)" app clipped>
       <allWeather></allWeather>
     </v-navigation-drawer>
-
     <v-app-bar app clipped-left color="rgb(97, 97, 255)">
-      <v-app-bar-nav-icon
-        color="#FFF"
-        @click.stop="drawer = !drawer"
-      ></v-app-bar-nav-icon>
       <DarkMode></DarkMode>
+      <allWeather></allWeather>
     </v-app-bar>
+
     <br />
     <br />
     <br />
@@ -41,18 +32,25 @@ export default {
   name: "App",
   data() {
     return {
-      drawer: false,
+      drawer: false
     };
-  },
+  }
 };
 </script>
 
 <style>
+.searchh {
+  color: #ffffff;
+  font-size: 30px;
+  margin-top: 4px;
+}
+.searchh:hover {
+  color: silver;
+}
 .sun {
   color: yellow;
 }
 .dark {
-  margin-left: 10px;
   font-size: 20px;
   margin-top: 10px;
 }
