@@ -3,7 +3,12 @@
     <div class="location">
       <v-dialog v-model="dialog" width="400">
         <template v-slot:activator="{ on, attrs }">
-          <span v-bind="attrs" v-on="on" class="material-icons searchh btn">search</span>
+          <span
+            v-bind:title="'Искать погоду'"
+            v-bind="attrs"
+            v-on="on"
+            class="material-icons searchh btn"
+          >search</span>
         </template>
 
         <v-card>
