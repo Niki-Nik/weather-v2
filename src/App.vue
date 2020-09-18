@@ -4,7 +4,7 @@
       <allWeather></allWeather>
     </v-navigation-drawer>
     <v-app-bar app clipped-left color="rgb(130, 113, 221)">
-      <DarkMode></DarkMode>
+      <!-- <DarkMode></DarkMode> -->
       <allWeather></allWeather>
     </v-app-bar>
     <br />
