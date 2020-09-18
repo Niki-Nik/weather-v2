@@ -8,7 +8,8 @@
             v-bind="attrs"
             v-on="on"
             class="material-icons searchh btn"
-          >search</span>
+            >search</span
+          >
         </template>
 
         <v-card>
@@ -25,10 +26,11 @@
             <v-spacer></v-spacer>
             <v-btn
               v-on:click="weather"
-              color="rgb(97, 97, 255)"
+              color="rgb(139, 112, 223)"
               text
               @click="dialog = false"
-            >узнать погоду</v-btn>
+              >узнать погоду</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -300,7 +302,7 @@ export default {
   margin-top: 5px;
 }
 .win {
-  background: rgb(97, 97, 255);
+  background: rgb(139, 112, 223);
   color: aliceblue;
 }
 </style>

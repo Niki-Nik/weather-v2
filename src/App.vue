@@ -1,13 +1,12 @@
 <template>
   <v-app id="app">
-    <v-navigation-drawer v-model="drawer" dark color="rgb(59, 57, 57)" app clipped>
+    <v-navigation-drawer v-model="drawer" dark app clipped>
       <allWeather></allWeather>
     </v-navigation-drawer>
-    <v-app-bar app clipped-left color="rgb(97, 97, 255)">
+    <v-app-bar app clipped-left color="rgb(130, 113, 221)">
       <DarkMode></DarkMode>
       <allWeather></allWeather>
     </v-app-bar>
-
     <br />
     <br />
     <br />
@@ -23,6 +22,7 @@
       <hr />
       <NextFourDays></NextFourDays>
     </div>
+
     <BishkekWeather></BishkekWeather>
   </v-app>
 </template>
@@ -32,16 +32,16 @@ export default {
   name: "App",
   data() {
     return {
-      drawer: false
+      drawer: false,
     };
-  }
+  },
 };
 </script>
 
 <style>
 .searchh {
   color: #ffffff;
-  font-size: 26 px;
+  font-size: 26px;
   margin-top: 4px;
 }
 .searchh:hover {
@@ -51,12 +51,27 @@ export default {
   color: yellow;
 }
 .dark {
+  /* margin-left: 10px; */
   font-size: 20px;
   margin-top: 10px;
 }
 #app {
-  background: rgb(97, 97, 255);
   color: aliceblue;
+  background: linear-gradient(
+    to bottom right,
+    rgb(101, 115, 255),
+    rgb(111, 114, 247),
+    rgb(120, 114, 239),
+    rgb(130, 113, 231),
+    rgb(139, 112, 223),
+    rgb(149, 111, 215),
+    rgb(158, 111, 208),
+    rgb(168, 110, 200),
+    rgb(177, 109, 192),
+    rgb(187, 108, 184),
+    rgb(196, 108, 176),
+    rgb(206, 107, 168)
+  );
 }
 .item {
   background: rgb(97, 97, 255);
